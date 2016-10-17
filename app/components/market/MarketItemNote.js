@@ -2,9 +2,14 @@ import React, { Component } from 'react';
 
 class MarketItemNote extends Component {
   render() {
-    const note = this.props.quantity === 1 ?
-                `(you will add 1 element at a time)` :
-                `(you will add ${this.props.quantity} elements at a time)`;
+    let note = '';
+    if (this.props.quantity === 1) {
+      note = '(you will add 1 element at a time)';
+    } else {
+      const discount = ((1 - this.props.discount) * 100).toFixed();
+      note = `(you will add ${this.props.quantity} elements at a time with a ${discount}% discount)`
+    }
+               `(you will add ${this.props.quantity} elements at a time with a ${(1 - this.props.discount) * 100}% discount)`;
     return (
       <small>{note}</small>
     );
@@ -12,7 +17,8 @@ class MarketItemNote extends Component {
 };
 
 MarketItemNote.PropTypes = {
-  quantity: React.PropTypes.number.isRequired
+  quantity: React.PropTypes.number.isRequired,
+  discount: React.PropTypes.number.isRequired
 };
 
 export default MarketItemNote;

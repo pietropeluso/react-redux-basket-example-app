@@ -20,7 +20,7 @@ class MarketItem extends Component {
     return (
       <li className="list-group-item">
         <strong>{data.name}</strong> <span>({data.price} ct) </span>
-        <MarketItemNote quantity={data.quantity} />
+        <MarketItemNote quantity={data.quantity} discount={data.discount} />
         <MarketItemActions add={this.addItemToBasket} remove={this.removeItemFromBasket} data={data} />
       </li>
     );
